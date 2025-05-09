@@ -1,8 +1,9 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideRouter, TitleStrategy, withComponentInputBinding } from '@angular/router';
 
 import { appRoutes } from './app.routes';
+import { PageTitleStrategy } from './strategies/custom-title-strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
       // withDebugTracing(),
       // withEnabledBlockingInitialNavigation()
     ),
+    { provide: TitleStrategy, useClass: PageTitleStrategy },
   ],
 };

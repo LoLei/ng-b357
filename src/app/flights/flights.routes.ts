@@ -13,13 +13,13 @@ export const flightRoutes: Routes = [
   {
     path: 'flight-edit/:id',
     component: FlightEditComponent,
-    title: 'NG A11Y - Flight Edit',
+    title: 'Flight Edit',
   },
 
   {
     path: 'flight-search',
     component: FlightSearchComponent,
-    title: 'NG A11Y - Flight Search',
+    title: 'Flight Search',
   },
 ];
 
