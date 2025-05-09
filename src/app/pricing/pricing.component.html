@@ -1,0 +1,14 @@
+<div class="pricing">
+  <h1>Pricing Plans</h1>
+  <div class="plans">
+    <ng-container *ngFor="let plan of pricingPlans; trackBy: trackByIndex">
+      <div class="plan">
+        <h2>{{ plan.tier }}</h2>
+        <p>{{ plan.price }}</p>
+        <ul>
+          <li *ngFor="let feature of plan.features">{{ feature }}</li>
+        </ul>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -2,6 +2,7 @@ import { Route } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { ChartsComponent } from './charts/charts.component';
+import { PricingComponent } from './pricing/pricing.component';
 
 import flightRoutes from './flights/flights.routes';
 
@@ -31,8 +32,9 @@ export const appRoutes: Route[] = [
     title: 'Charts',
   },
 
-  /*{
-    path: '**',
-    redirectTo: '',
-  },*/
+  {
+    path: 'pricing',
+    component: PricingComponent,
+    title: 'Pricing',
+  },
 ];
