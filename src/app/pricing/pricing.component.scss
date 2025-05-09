@@ -2,18 +2,83 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
 
   .plans {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
 
     .plan {
-      border: 1px solid #ccc;
-      padding: 1rem;
+      border: 2px solid #ddd;
+      padding: 1.5rem;
       margin: 1rem;
-      border-radius: 8px;
+      border-radius: 12px;
       text-align: center;
-      background-color: white;
+      background-color: #fff;
+      transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      h2 {
+        font-size: 1.8rem;
+        color: #007bff;
+        margin-bottom: 0.5rem;
+      }
+
+      .price {
+        font-size: 1.5rem;
+        color: #28a745;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1rem 0;
+
+        li {
+          font-size: 1rem;
+          color: #555;
+          margin: 0.5rem 0;
+        }
+      }
+
+      .subscribe-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
     }
   }
 }

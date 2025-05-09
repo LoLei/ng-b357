@@ -17,4 +17,8 @@ export class PricingComponent {
   trackByIndex(index: number, item: { tier: string; price: string; features: string[] }): number {
     return index;
   }
+
+  trackByFeature(index: number, feature: string): number {
+    return index;
+  }
 }
