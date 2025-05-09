@@ -14,7 +14,7 @@
   top: 0.75rem;
   left: 0.875rem;
   background: #f4f3ef; // same as main content
-  color: #2c2c2c; // same as main content
+  color: #000000; // same as main content
   outline-color: peru;
   padding: 0.5rem 0.75rem;
   border-radius: 0.25rem;
@@ -24,4 +24,19 @@
 
 .skip-link:focus {
   transform: translateY(0);
+}
+
+p {
+  color: white;
+  background-color: black;
+}
+
+span {
+  color: white;
+  background-color: black;
+}
+
+.gradient {
+  background-color: black;
+  opacity: 0;
 }
