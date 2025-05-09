@@ -15,18 +15,20 @@ export const appRoutes: Route[] = [
   {
     path: 'home',
     component: HomeComponent,
-    title: 'Home',
+    title: 'NG A11Y - Home',
   },
 
   {
     path: 'flights',
     children: flightRoutes,
     // loadChildren: () => import('./flights/flights.routes').then((f) => f.flightRoutes),
+    title: 'NG A11Y - Flights',
   },
 
   {
     path: 'charts',
     component: ChartsComponent,
+    title: 'NG A11Y - Charts',
   },
 
   /*{

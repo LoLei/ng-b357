@@ -1,4 +1,4 @@
-import { Component, DestroyRef, effect, inject, input, model } from '@angular/core';
+import { Component, DestroyRef, effect, inject, input, model, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,17 +10,19 @@ import { pattern } from '../../shared/global';
 
 import { FlightService } from '../flight.service';
 import { Flight } from '../../entities/flight';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-flight-edit',
   imports: [ReactiveFormsModule],
   templateUrl: './flight-edit.component.html',
 })
-export class FlightEditComponent {
+export class FlightEditComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly fb = inject(FormBuilder);
   private readonly flightService = inject(FlightService);
   private readonly router = inject(Router);
+  private readonly title = inject(Title);
 
   protected flight$?: Observable<Flight>;
   readonly flight = model<Flight>();
@@ -82,6 +84,10 @@ export class FlightEditComponent {
 
   constructor() {
     this.setupSubscriptions();
+  }
+
+  ngOnInit(): void {
+    this.title.setTitle(`Edit Flight #${this.id()} - NG A11y`);
   }
 
   protected onSave(): void {
