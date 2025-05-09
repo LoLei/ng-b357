@@ -2,15 +2,19 @@
   <h1>💰 Pricing Plans</h1>
   <p>Choose the best plan for your needs and enjoy exclusive benefits! 🌟</p>
   <div class="plans">
-    <ng-container *ngFor="let plan of pricingPlans; trackBy: trackByIndex">
+    <ng-template ngFor let-plan [ngForOf]="pricingPlans" [ngForTrackBy]="trackByIndex">
       <div class="plan">
         <h2>{{ plan.tier }} 🚀</h2>
-        <p class="price">{{ plan.price }}</p>
+        <p class="price">
+          {{ plan.price }}
+        </p>
         <ul>
-          <li *ngFor="let feature of plan.features; trackBy: trackByFeature">✅ {{ feature }}</li>
+          <ng-template ngFor let-feature [ngForOf]="plan.features" [ngForTrackBy]="trackByFeature">
+            <li>✅ {{ feature }}</li>
+          </ng-template>
         </ul>
         <button type="button" class="subscribe-button">Subscribe Now</button>
       </div>
-    </ng-container>
+    </ng-template>
   </div>
 </div>
