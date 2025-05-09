@@ -1,10 +1,10 @@
 import { Component, computed, DestroyRef, effect, ElementRef, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { BehaviorSubject, Observer } from 'rxjs';
+import { BehaviorSubject, filter, Observer } from 'rxjs';
 
 import { BlinkService } from '../../shared/blink.service';
 import { pattern } from '../../shared/global';
@@ -32,6 +32,7 @@ export class FlightSearchComponent {
   protected from = 'Graz';
   protected to = 'Hamburg';
   protected hasSearched = false;
+  private readonly doc = inject(DOCUMENT);
 
   protected minLength = 3;
   protected maxLength = 15;
@@ -63,6 +64,12 @@ export class FlightSearchComponent {
     }
 
     // add focus management here
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
+      const input = this.doc.querySelector('app-flight-search input') as HTMLInputElement;
+      if (input) {
+        input.focus();
+      }
+    });
   }
 
   protected onSearch(): void {
