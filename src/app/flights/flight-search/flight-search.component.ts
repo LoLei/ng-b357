@@ -15,6 +15,8 @@ import { FlightCardComponent } from '../flight-card/flight-card.component';
 import { FlightStatusToggleComponent } from '../flight-status-toggle/flight-status-toggle.component';
 import { FlightValidationErrorsComponent } from '../flight-validation-errors/flight-validation-errors.component';
 
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+
 @Component({
   selector: 'app-flight-search',
   imports: [
@@ -58,6 +60,8 @@ export class FlightSearchComponent {
 
   @ViewChild('flightSearchForm') private readonly flightSearchForm?: NgForm;
 
+  private readonly liveAnnouncer = inject(LiveAnnouncer);
+
   constructor() {
     effect(() => console.log('update: ', this.flights())); // to demo effect
 
@@ -95,13 +99,16 @@ export class FlightSearchComponent {
         this.flights.set(flights);
         this.hasSearched = true;
         if (flights.length > 0) {
+          this.liveAnnouncer.announce('Found ' + flights.length + ' flights');
           console.log('Found ' + flights.length + ' flights');
         } else {
+          this.liveAnnouncer.announce('No flights found');
           console.log('No flights found');
         }
       },
       error: (errResp) => {
         this.hasSearched = true;
+        this.liveAnnouncer.announce('Error loading flights');
         console.error('Error loading flights', errResp);
       },
       complete: () => {
