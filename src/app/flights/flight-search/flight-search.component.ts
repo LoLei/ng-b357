@@ -1,6 +1,6 @@
-import { Component, computed, DestroyRef, effect, ElementRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, ElementRef, inject, signal, ViewChild } from '@angular/core';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -56,6 +56,8 @@ export class FlightSearchComponent {
   private readonly flightService = inject(FlightService);
   private readonly router = inject(Router);
 
+  @ViewChild('flightSearchForm') private readonly flightSearchForm?: NgForm;
+
   constructor() {
     effect(() => console.log('update: ', this.flights())); // to demo effect
 
@@ -72,7 +74,16 @@ export class FlightSearchComponent {
     });
   }
 
+  private markFormGroupDirty(formGroup: NgForm): void {
+    Object.values(formGroup.controls).forEach((control) => control.markAsDirty());
+  }
+
   protected onSearch(): void {
+    if (this.flightSearchForm?.invalid) {
+      this.markFormGroupDirty(this.flightSearchForm);
+      return;
+    }
+
     // 1. my observable
     const flights$ = this.flightService.find(this.from, this.to);
 
